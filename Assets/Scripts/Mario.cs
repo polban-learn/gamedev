@@ -6,6 +6,7 @@ using UnityEngine;
 /* Mario physics reference: http://s276.photobucket.com/user/jdaster64/media/smb_playerphysics.png.html */
 
 
+
 public class Mario : MonoBehaviour {
 	private LevelManager t_LevelManager;
 	private Transform m_GroundCheck1, m_GroundCheck2;
