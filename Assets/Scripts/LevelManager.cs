@@ -5,9 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 
+using System;
+using System.IO;
+
 
 public class LevelManager : MonoBehaviour {
 	private const float loadSceneDelay = 1f;
+	LeaderBoard playerRecord = new LeaderBoard();
 
 	public bool hurryUp; // within last 100 secs?
 	public int marioSize; // 0..2
@@ -108,7 +112,7 @@ public class LevelManager : MonoBehaviour {
 			ChangeMusic (levelMusic);
 		}
 
-		Debug.Log (this.name + " Start: current scene is " + SceneManager.GetActiveScene ().name);
+        Debug.Log (this.name + " Start: current scene is " + SceneManager.GetActiveScene ().name);
 	}
 
 	void RetrieveGameState() {
@@ -332,6 +336,9 @@ public class LevelManager : MonoBehaviour {
 			if (lives > 0) {
 				ReloadCurrentLevel (deadSound.length, timeup);
 			} else {
+				playerRecord.readFile();
+				playerRecord.input("Renol", (uint) scores);
+				playerRecord.writeToFile();
 				LoadGameOver (deadSound.length, timeup);
 				Debug.Log(this.name + " MarioRespawn: all dead");
 			}

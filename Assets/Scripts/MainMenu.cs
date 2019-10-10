@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour {
 	private GameStateManager t_GameStateManager;
 	public Text TopText;
 
+	LeaderBoard playerRecord = new LeaderBoard();
+
 	public GameObject VolumePanel;
 	public GameObject SoundSlider;
 	public GameObject MusicSlider;
@@ -20,8 +22,18 @@ public class MainMenu : MonoBehaviour {
 		t_GameStateManager = FindObjectOfType<GameStateManager> ();
 		t_GameStateManager.ConfigNewGame ();
 
-		int currentHighScore = PlayerPrefs.GetInt ("highScore", 0);
-		TopText.text = "TOP- " + currentHighScore.ToString ("D6");
+		// int currentHighScore = PlayerPrefs.GetInt ("highScore", 0);
+		// TopText.text = "TOP- " + currentHighScore.ToString ("D6");
+
+		playerRecord.readFile();
+		string name = "";
+		for (int i = 0; i < playerRecord.playerRecord.Length; i++) {
+			if (playerRecord.playerRecord[i].fillUp) {
+				name = name + playerRecord.getName(i) + " " + playerRecord.getScore(i) + "\n";
+			}
+		}
+		TopText.text = name;
+
 
 		if (!PlayerPrefs.HasKey ("soundVolume")) {
 			PlayerPrefs.SetFloat ("soundVolume", 1);
