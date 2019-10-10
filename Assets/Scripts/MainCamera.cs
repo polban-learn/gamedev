@@ -7,7 +7,7 @@ public class MainCamera : MonoBehaviour {
 	public float followAhead = 2.6f;
 	public float smoothing = 5;
 	public bool canMove;
-	public bool canMoveBackward = false;
+	public bool canMoveBackward = true;
 
 	private Transform leftEdge;
 	private Transform rightEdge;
@@ -73,25 +73,25 @@ public class MainCamera : MonoBehaviour {
 
 
 
-//		void Update () { // can move camera both left and right
-//			if (canMove) {
-//				bool passedLeftEdge = transform.position.x < leftEdge.position.x + cameraWidth;
-//				bool passedRightEdge = transform.position.x > rightEdge.position.x - cameraWidth;
-//
-//				targetPosition = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
-//
-//				// move target of camera ahead of Player, but do not let camera shoot pass
-//				// level boundaries
-//				if (target.transform.localScale.x > 0f && !passedRightEdge && 
-//					targetPosition.x - leftEdge.position.x >= cameraWidth - followAhead) {
-//					targetPosition = new Vector3(targetPosition.x + followAhead, targetPosition.y, targetPosition.z);
-//					transform.position = Vector3.Lerp(transform.position, targetPosition, smoothing * Time.deltaTime);
-//				} else if (target.transform.localScale.x < 0f && !passedLeftEdge && 
-//					rightEdge.position.x - targetPosition.x >= cameraWidth - followAhead) {
-//					targetPosition = new Vector3(targetPosition.x - followAhead, targetPosition.y, targetPosition.z);
-//					transform.position = Vector3.Lerp(transform.position, targetPosition, smoothing * Time.deltaTime);
-//				}
-//			}
-//		}
+		void Update () { // can move camera both left and right
+			if (canMove) {
+				bool passedLeftEdge = transform.position.x < leftEdge.position.x + cameraWidth;
+				bool passedRightEdge = transform.position.x > rightEdge.position.x - cameraWidth;
+
+				targetPosition = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
+
+				// move target of camera ahead of Player, but do not let camera shoot pass
+				// level boundaries
+				if (target.transform.localScale.x > 0f && !passedRightEdge && 
+					targetPosition.x - leftEdge.position.x >= cameraWidth - followAhead) {
+					targetPosition = new Vector3(targetPosition.x + followAhead, targetPosition.y, targetPosition.z);
+					transform.position = Vector3.Lerp(transform.position, targetPosition, smoothing * Time.deltaTime);
+				} else if (target.transform.localScale.x < 0f && !passedLeftEdge && 
+					rightEdge.position.x - targetPosition.x >= cameraWidth - followAhead) {
+					targetPosition = new Vector3(targetPosition.x - followAhead, targetPosition.y, targetPosition.z);
+					transform.position = Vector3.Lerp(transform.position, targetPosition, smoothing * Time.deltaTime);
+				}
+			}
+		}
 	}
 }

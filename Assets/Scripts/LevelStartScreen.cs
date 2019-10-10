@@ -23,7 +23,7 @@ public class LevelStartScreen : MonoBehaviour {
 		t_GameStateManager = FindObjectOfType<GameStateManager> ();
 		string worldName = t_GameStateManager.sceneToLoad;
 
-		WorldTextHUD.text = Regex.Split (worldName, "World ")[1];
+		WorldTextHUD.text = Regex.Split (worldName, "City ")[1];
 		ScoreTextHUD.text = t_GameStateManager.scores.ToString ("D6");
 		CoinTextHUD.text = "x" + t_GameStateManager.coins.ToString ("D2");
 		WorldTextMain.text = worldName.ToUpper ();

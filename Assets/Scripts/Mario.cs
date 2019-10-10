@@ -55,6 +55,7 @@ public class Mario : MonoBehaviour {
 	private bool isChangingDirection;
 	private bool wasDashingBeforeJump;
 	private bool isShooting;
+	private bool isLightning;
 	public bool isCrouching;
 
 	private bool jumpButtonHeld;
@@ -251,6 +252,13 @@ public class Mario : MonoBehaviour {
 			}
 		}
 
+		/******** Lightning Skill */
+		if (isLightning && t_LevelManager.skill == 3) {
+			t_LevelManager.skill = 0;
+
+			
+		}
+
 		/******** Set params */
 		m_Rigidbody2D.velocity = new Vector2 (moveDirectionX*currentSpeedX, m_Rigidbody2D.velocity.y);
 
@@ -274,6 +282,7 @@ public class Mario : MonoBehaviour {
 			isCrouching = Input.GetButton ("Crouch");
 			isShooting = Input.GetButtonDown ("Dash");
 			jumpButtonHeld = Input.GetButton ("Jump");
+			isLightning = Input.GetButton ("Fire");
 			if (Input.GetButtonUp ("Jump")) {
 				jumpButtonReleased = true;
 			}
@@ -359,6 +368,7 @@ public class Mario : MonoBehaviour {
 		isCrouching = false;
 		isChangingDirection = false;
 		isShooting = false;
+		isLightning = false;
 
 		gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; // stop all momentum
 		Debug.Log (this.name + " FreezeUserInput called");

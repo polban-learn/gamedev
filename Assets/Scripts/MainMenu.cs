@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour {
 		t_GameStateManager.ConfigNewGame ();
 
 		int currentHighScore = PlayerPrefs.GetInt ("highScore", 0);
-		TopText.text = "TOP- " + currentHighScore.ToString ("D6");
+		//TopText.text = "TOP- " + currentHighScore.ToString ("D6");
 
 		if (!PlayerPrefs.HasKey ("soundVolume")) {
 			PlayerPrefs.SetFloat ("soundVolume", 1);
@@ -52,31 +52,31 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-	public void StartNewGame() {
+	public void Start_Batam1() {
 		if (!volumePanelActive) {
-			t_GameStateManager.sceneToLoad = "World 1-1";
+			t_GameStateManager.sceneToLoad = "City 1-1";
 			SceneManager.LoadScene ("Level Start Screen");
 		}
 	}
 
-	public void StartWorld1_2() {
+	public void Start_Bandung1() {
 		if (!volumePanelActive) {
-			t_GameStateManager.sceneToLoad = "World 1-2";
+			t_GameStateManager.sceneToLoad = "City 2-1";
 			SceneManager.LoadScene ("Level Start Screen");
 		}
 	}
 		
-	public void StartWorld1_3() {
+	public void Start_Surabaya1() {
 		if (!volumePanelActive) {
-			t_GameStateManager.sceneToLoad = "World 1-3";
+			t_GameStateManager.sceneToLoad = "City 3-1";
 			SceneManager.LoadScene ("Level Start Screen");
 		}
 	}
 
 
-	public void StartWorld1_4() {
+	public void Start_Jakarta2() {
 		if (!volumePanelActive) {
-			t_GameStateManager.sceneToLoad = "World 1-4";
+			t_GameStateManager.sceneToLoad = "City 4-2";
 			SceneManager.LoadScene ("Level Start Screen");
 		}
 	}

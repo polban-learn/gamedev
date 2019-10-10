@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour {
 	public int scores;
 	public float timeLeft;
 	private int timeLeftInt;
+	public int skill;
 
 	private bool isRespawning;
 	private bool isPoweringDown;
@@ -71,6 +72,7 @@ public class LevelManager : MonoBehaviour {
 	public int starmanBonus = 1000;
 	public int oneupBonus = 0;
 	public int breakBlockBonus = 50;
+	public int skillBonus = 500;
 
 	public Vector2 stompBounceVelocity = new Vector2 (0, 15);
 
@@ -118,6 +120,7 @@ public class LevelManager : MonoBehaviour {
 		scores = t_GameStateManager.scores;
 		timeLeft = t_GameStateManager.timeLeft;
 		hurryUp = t_GameStateManager.hurryUp;
+		skill = t_GameStateManager.skill;
 	}
 
 
@@ -524,6 +527,9 @@ public class LevelManager : MonoBehaviour {
 	public void AddCoin() {
 		coins++;
 		soundSource.PlayOneShot (coinSound);
+		if (coins == 50){
+			AddSkill ();
+		}
 		if (coins == 100) {
 			AddLife ();
 			coins = 0;
@@ -556,6 +562,23 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+	//NEW FEATURE (Lightning Skill)
+	public void AddSkill(){
+		if (skill<3){
+			skill++;
+		}
+		soundSource.PlayOneShot (oneUpSound);
+		AddScore (skillBonus);
+	}
+
+	public void AddSkill(Vector3 spawnPos) {
+		if (skill<3){
+			skill++;
+		}
+		soundSource.PlayOneShot (oneUpSound);
+		CreateFloatingText ("Skill UP", spawnPos);
+		AddScore (skillBonus, spawnPos);
+	}
 
 	/****************** Misc */
 	public Vector3 FindSpawnPosition() {

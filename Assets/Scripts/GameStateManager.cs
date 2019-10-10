@@ -14,6 +14,7 @@ public class GameStateManager : MonoBehaviour {
 	public int scores;
 	public float timeLeft;
 	public bool hurryUp;
+	public int skill;
 
 	public string sceneToLoad; // what scene to load after level start screen finishes?
 	public bool timeup;
@@ -48,6 +49,7 @@ public class GameStateManager : MonoBehaviour {
 		ResetSpawnPosition ();
 		sceneToLoad = null;
 		timeup = false;
+		skill = 0;
 	}
 
 	public void ConfigNewLevel() {
@@ -69,6 +71,7 @@ public class GameStateManager : MonoBehaviour {
 		scores = t_LevelManager.scores;
 		timeLeft = t_LevelManager.timeLeft;
 		hurryUp = t_LevelManager.hurryUp;
+		skill = t_LevelManager.skill;
 	}
 
 }
